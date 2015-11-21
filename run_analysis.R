@@ -7,34 +7,13 @@
 #    download.file(fileUrl, destfile = "./accel.zip", method = "curl")
 #    ## Unzip the data files into the working directory, preserving the sub-directory structure
 #    unzip("./accel.zip", exdir = ".")
-
-## This block of code reads in the required data files from the working directory
-## IMPORTANT NOTE: This assumes that the zip file's directory structure was maintained, and that the files are nested
-## within the working directory
-
-## Read in the subject codes for both data sets and apply a column name "testsubject"
-train_subject <- read.table("./UCI HAR Dataset/train/subject_train.txt", col.names=c("testsubject"))
-test_subject <- read.table("./UCI HAR Dataset/test/subject_test.txt", col.names=c("testsubject"))
-## Read in the activity codes for both data sets and label the single column "activitycode"
-train_activity <- read.table("./UCI HAR Dataset/train/y_train.txt", col.names=c("activitycode"))
-test_activity <- read.table("./UCI HAR Dataset/test/y_test.txt", col.names=c("activitycode"))
-## Read in the features data set for use as column names in both data sets
-features <- read.table("./UCI HAR Dataset/features.txt")
-## Read in the data observations for both data sets
-train_data <- read.table("./UCI HAR Dataset/train/X_train.txt",col.names=features[,2])
-test_data <- read.table("./UCI HAR Dataset/test/X_test.txt",col.names=features[,2])
-## Read in the activity names for the datasets and assign column names to assist later joining
-activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt", col.names=c("activitycode", "activityname"))
+#    dateDownloaded <- date()
 
 
-dateDownloaded <- date()
-
-
-## This block of code grabs the required files within the specified zip file by creating a 
+## This alternative block of code grabs the required files within the specified zip file by creating a 
 ## temporary connection. This is my preferred approach, although it doesn't leave a copy of the original zip file
 ## in the working directory.  As above, according to the Project instructions, this step is not required, as the 
 ## data files already reside within the working directory
-#
 #
 #    ## Create a variable to contain the file URL
 #    fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
@@ -59,6 +38,23 @@ dateDownloaded <- date()
 #    unlink(temp)
 #    dateDownloaded <- date()
 
+## This block of code reads in the required data files from the working directory
+## IMPORTANT NOTE: This assumes that the zip file's directory structure was maintained, and that the files are nested
+## within the working directory
+
+## Read in the subject codes for both data sets and apply a column name "testsubject"
+train_subject <- read.table("./UCI HAR Dataset/train/subject_train.txt", col.names=c("testsubject"))
+test_subject <- read.table("./UCI HAR Dataset/test/subject_test.txt", col.names=c("testsubject"))
+## Read in the activity codes for both data sets and label the single column "activitycode"
+train_activity <- read.table("./UCI HAR Dataset/train/y_train.txt", col.names=c("activitycode"))
+test_activity <- read.table("./UCI HAR Dataset/test/y_test.txt", col.names=c("activitycode"))
+## Read in the features data set for use as column names in both data sets
+features <- read.table("./UCI HAR Dataset/features.txt")
+## Read in the data observations for both data sets
+train_data <- read.table("./UCI HAR Dataset/train/X_train.txt",col.names=features[,2])
+test_data <- read.table("./UCI HAR Dataset/test/X_test.txt",col.names=features[,2])
+## Read in the activity names for the datasets and assign column names to assist later joining
+activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt", col.names=c("activitycode", "activityname"))
 
 ## Load the required libraries for the data cleaning, shaping and summarizing functions
 library(plyr)
@@ -66,7 +62,6 @@ library(dplyr)
 library(tidyr)
 library(reshape2)
 library(stringr)
-
 
 ## The following block cleans and assigns column labels and combines the test subject, activity and observation data
 ## Create friendly activity names by changing all to lower case and removing underscores
