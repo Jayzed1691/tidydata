@@ -82,17 +82,22 @@ The original 'subject_test' and 'subject_train' identifier data was retained wit
 The second column, labeled "activityname" is a transformation of the integer items from y_train and y_test into human-friendly activity labels as provided in 'activity_labels.txt', after removing non-alphabetic characters and converting to lower case.
  
  - 2  activityname           : chr  "laying" "sitting" "standing" "walking" "walkingdownstairs" "walkingupstairs"
- - 
- Each test subject was observed undertaking each of the 6 separate activities in the dataset, resulting in 180 summary observations.
  
- There follow 66 variables with names constructed of a series of elements as follows:
- [avg] - all variables are averages of the specified observations from the original datasets
- [t,f] - t is used to denote time domain signals and f to denote frequency domain signals
- [body,gravity] - acceleration measures have been separated into body or gravity signals
- [acc, gyro] - original signals obtained from either the accelerometer or the gyroscope
- [jerk, mag] - body linear acceleration and angular velocity were derived in time to obtain jerk signals, while the magnitude of these three-dimensional signals were calculated using the Euclidean norm 
- [x,y,z] - denote the three axial signals in the X, Y and Z directions
- [mean, std] - finally, each variable name ends with either "mean" or "std" denoting whether the original measure was a mean or standard deviation of the related observations
+Each test subject was observed undertaking each of the 6 separate activities in the dataset, resulting in 180 summary observations.
+ 
+The patterns described in part A above comprise a set of 33 features.  The tidy data set has subsetted the mean() and std() estimates for each of these features, resulting in a total of 66 variables.  
+
+Additionally, the mean and standard deviation measures have been averaged for the tidy data set by testsubject and activity name.
+
+The names have been revised from the original 'features.txt' to remove non-alphabetic characters, and reorder the internal components slightly for more user-friendly sorting. The new names are constructed of a series of elements as follows:
+
+ - [avg] - all variables are averages of the specified observations from the original datasets
+ - [t,f] - t is used to denote time domain signals and f to denote frequency domain signals
+ - [body,gravity] - acceleration measures have been separated into body or gravity signals
+ - [acc, gyro] - original signals obtained from either the accelerometer or the gyroscope
+ - [jerk, mag] - body linear acceleration and angular velocity were derived in time to obtain jerk signals, while the magnitude of these    three-dimensional signals were calculated using the Euclidean norm 
+ - [x,y,z] - denote the three axial signals in the X, Y and Z directions
+ - [mean, std] - finally, each variable name ends with either "mean" or "std" denoting whether the original measure was a mean or          standard deviation of the related observations
 
 The acceleration signal from the smartphone accelerometer X axis in standard gravity units 'g'.
 The body acceleration signal obtained by subtracting the gravity from the total acceleration. 
@@ -100,6 +105,7 @@ The angular velocity vector measured by the gyroscope for each window sample. Th
 
  The variables are all vectors of type num.
  The variable names in this tidy data set are:
+ 
   - 3  avgtbodyaccxmean
   - 4  avgtbodyaccymean
   - 5  avgtbodyacczmean
