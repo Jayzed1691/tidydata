@@ -2,7 +2,11 @@ title: "Tidy Data Codebook"
 author: "Jonathan Zax"
 date: "November 20, 2015"
 
-The raw data for this assignment is contained within six files from the Human Activity Recognition Using Smartphones Dataset, Version 1.0.  They are:
+The raw data for this assignment is contained within six files from the Human Activity Recognition Using Smartphones Dataset, Version 1.0, available for download from the following link:
+
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+The files required are:
  - 'features.txt': List of all features.
  - 'activity_labels.txt': Links the class labels with their activity name.
  - 'train/X_train.txt': Training set.
