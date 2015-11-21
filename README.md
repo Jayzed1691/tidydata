@@ -7,11 +7,11 @@ The original file set can be found at:  https://d396qusza40orc.cloudfront.net/ge
 
 The zip file contains the following  nested directory structure:
 
-/UCI HAR Dataset
-/UCI HAR Dataset/test
-/UCI HAR Dataset/train
-/UCI HAR Dataset/test/Inertial Signals
-/UCI HAR Dataset/train/Inertial Signals
+  - /UCI HAR Dataset
+  - /UCI HAR Dataset/test
+  - /UCI HAR Dataset/train
+  - /UCI HAR Dataset/test/Inertial Signals
+  - /UCI HAR Dataset/train/Inertial Signals
 
 The parent directory contains several descriptive and data files:
   - 'activity_labels.txt' - the link from the activity class labels to their descriptive labels (6 in total)
@@ -29,6 +29,24 @@ The 'Inertial Signals' were not required for the purpose of this exercise, and s
 The assignment states that the code can be run assuming the required data files reside in the working directory.  I have made the assumption that the original zip file was downloaded to the working directory and unzipped with the original directory structure intact.
 
 The various 'read' statements make use of this directory structure, but I have also included the requisite code to replicate the downloading and unzipping steps at the top of the block as comments, to be used if necessary.
+
+I have additionally included, as a comment block, several lines of code that would download the zip file to a temporary connection and unzip and read only the required files.  This is my preferred method but, again, is not required for the purpose of the assignment.
+
+The first block of active code is a series of read.table calls on the 8 required files:
+  - 'subject_train.txt' reads into 'train_subject' with a column name of 'testsubject' applied
+  - 'subject_test.txt' reads into 'test_subject' with a column name of 'testsubject' applied
+  - 'y_train.txt' reads into 'train_activity' with a column name of 'activitycode' to facilitate a later join
+  - 'y_test.txt' reads into 'test_activity' with a column name of 'activitycode' to facilitate a later join
+  - 'features.txt' reads into 'features'
+  - 'X_train.text' reads into 'train_data' with column names applied from the 'features' dataframe
+  - 'X_test.text' reads into 'test_data' with column names applied from the 'features' dataframe
+  - 'activity_labels.txt' reads into 'activity_labels' with column names of 'activitycode' and 'activityname' to facilitate a later join
+
+The code then loads the plyr, dplyr, tidyr, reshape2 and stringr packages.
+
+
+
+
 
 
 
