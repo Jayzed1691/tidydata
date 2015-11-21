@@ -44,7 +44,20 @@ The first block of active code is a series of read.table calls on the 8 required
 
 The code then loads the plyr, dplyr, tidyr, reshape2 and stringr packages.
 
-
+The next block of code prepares tidy-data-friendly activity labels and feature names as follows:
+  - The activity labels are all changed to lower case and the '_' characters are removed using gsub()
+  - The features names go through a more involved, and possibly unnecessary process resulting in a 'newfeatures' vector:
+    - changed to lower case and removal of all ',',' ','(' and ')' characters using gsub()
+    - separating the resulting names into a maximum of 3 strings on the '-' character using separate()
+    - joining the original feature row number to the three strings in a revised order (1,3,2), separated by '-' using unite()
+      -(While not strictly required, I prefer the possibility of sorting the columns by feature name and having the mean and standard          -deviation for each variable next to each other. The row number is appended to eliminate any duplicate names that might cause            -problems in a later bind() call.  PLEASE NOTE:  the unite() call will print a warning, because not all of the feature names             -separated into 3 components, resulting in NA values. These are addressed later.
+    - the next several lines remove, respectively, 'NA', duplicate 'body', terminal '--' from missing components and internal duplicate        '--'
+The following block of code creates the unified data set from all of the individual elements, with tidy variables and activity names:
+  - 'train_data' and 'test_data' are given the 'newfeatures' column names
+  - 'train_activity' and 'test_activity' are appended with descriptive 'activity_labels' using join()
+  - 'train_subject' and 'test_subject' are combined with the descriptive 'activity_labels' using bind_cols()
+  - 'train_all' and 'test_all' are produced by combining '_subject' and '_data' using bind_cols()
+  - 'alldata' containing the entire data set is produced by combining 'train_all' and 'test_all' using bind_rows()
 
 
 
