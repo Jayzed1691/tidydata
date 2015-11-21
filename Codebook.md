@@ -11,8 +11,10 @@ The files required are:
  - 'activity_labels.txt': Links the class labels with their activity name.
  - 'train/X_train.txt': Training set.
  - 'train/y_train.txt': Training labels.
+ - 'train/subject_train.txt': Identifies the subject who performed the activity.
  - 'test/X_test.txt': Test set.
  - 'test/y_test.txt': Test labels.
+ - 'test/subject_test.txt': Identifies the subject who performed the activity.
 
 For the sake of completeness, the original codebook for the raw data sets is presented below, followed by a discussion of the selection and transformation conducted to result in the wide tidy dataset 'tidydata.txt'.
 
@@ -22,7 +24,7 @@ For the sake of completeness, the original codebook for the raw data sets is pre
 
 "Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals)."
 
-"These signals were used to estimate variables of the feature vector for each pattern. '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions:
+"A. These signals were used to estimate variables of the feature vector for each pattern. '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions:
   - tBodyAcc-XYZ
   - tGravityAcc-XYZ
   - tBodyAccJerk-XYZ
@@ -41,7 +43,7 @@ For the sake of completeness, the original codebook for the raw data sets is pre
   - fBodyGyroMag
   - fBodyGyroJerkMag
 
-"The set of variables that were estimated from these signals are:
+"B. The set of variables that were estimated from these signals are:
   - mean(): Mean value
   - std(): Standard deviation
   - mad(): Median absolute deviation 
@@ -60,7 +62,7 @@ For the sake of completeness, the original codebook for the raw data sets is pre
   - bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
   - angle(): Angle between to vectors.
 
-"Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
+"C. Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
   - gravityMean
   - tBodyAccMean
   - tBodyAccJerkMean
@@ -71,14 +73,17 @@ For the sake of completeness, the original codebook for the raw data sets is pre
   - Features are normalized and bounded within [-1,1]
   - Each feature vector is a row on the text file
 
+The tidy data set that has been written into tidydata.txt is a data.frame with	180 observations of 68 variables.
 
-'data.frame':	180 obs. of  68 variables:
- Identifiers are contained in the first two columns labeled "testsubject" and "activityname".
- There were 30 test subjects in total in the combines test and train data sets, indicated by the integers 1 through 30.
- Each test subject was observed undertaking 6 separate activities in the dataset, resulting in 180 summary observations.
+The original 'subject_test' and 'subject_train' identifier data was retained without transformation. There were 30 test subjects in total in the combined test and train data sets, indicated by the integers 1 through 30. These appear in the first column of the tidy data set as:
+
+ - 1  testsubject            : int  1:30 signifying the 30 test subjects
  
-  - 1  testsubject            : int  1:30
-  - 2  activityname           : chr  "laying" "sitting" "standing" "walking" "walkingdownstairs" "walkingupstairs"
+The second column, labeled "activityname" is a transformation of the integer items from y_train and y_test into human-friendly activity labels as provided in 'activity_labels.txt', after removing non-alphabetic characters and converting to lower case.
+ 
+ - 2  activityname           : chr  "laying" "sitting" "standing" "walking" "walkingdownstairs" "walkingupstairs"
+ - 
+ Each test subject was observed undertaking each of the 6 separate activities in the dataset, resulting in 180 summary observations.
  
  There follow 66 variables with names constructed of a series of elements as follows:
  [avg] - all variables are averages of the specified observations from the original datasets
