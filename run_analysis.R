@@ -98,7 +98,7 @@ train_all <- bind_cols(train_subject, train_data)
 alldata <- bind_rows("testgroup"=test_all, "traingroup"=train_all, .id = "group")
 
 
-## The following block subsets the original data, melts and summarizes the data and writes the reulting tidy data set
+## The following block subsets the original data, melts and summarizes the data and writes the resulting tidy data set
 
 ## Determine which columns to select be searching column names for either "mean" or "std"
 column_select <- c(1,2,4,grep("-mean$|-std$",names(alldata)))
