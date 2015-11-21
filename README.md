@@ -58,9 +58,10 @@ The following block of code creates the unified data set from all of the individ
   - 'train_activity' and 'test_activity' are appended with descriptive 'activity_labels' using join()
   - 'train_subject' and 'test_subject' are combined with the descriptive 'activity_labels' using bind_cols()
   - 'train_all' and 'test_all' are produced by combining '_subject' and '_data' using bind_cols()
-  - 'alldata' containing the entire data set is produced by combining 'train_all' and 'test_all' using bind_rows()
+  - 'alldata' containing the entire data set is produced by combining 'train_all' and 'test_all' using bind_rows(), and creating a new        vector named 'group' which identifies which original group the data belongs to - either 'testgroup' or 'traingroup'.
 
-
+With the complete dataset in hand, it is time to begin subsetting and reshaping it.
+  - The first step is to select columns
 
 
 
