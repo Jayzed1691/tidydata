@@ -61,7 +61,17 @@ The following block of code creates the unified data set from all of the individ
   - 'alldata' containing the entire data set is produced by combining 'train_all' and 'test_all' using bind_rows(), and creating a new        vector named 'group' which identifies which original group the data belongs to - either 'testgroup' or 'traingroup'.
 
 With the complete dataset in hand, it is time to begin subsetting and reshaping it.
-  - The first step is to select columns
+  - The first step is to select columns for the tidydata set.  I specify the identifying columns (1,2,4) and subset the remainder            searching for a terminal '-std' or '-mean' using grep(). The '-' was explicitly retained in the earlier steps in order to distinguish     the original feature names containing 'mean()' from those containing 'mean', e.g. 'gravitymean' and 'meanfreq', as these have no         corresponding standard deviation measure.  The result is a 69-element vector, with three id columns ('group', 'testsubject',             'activityname') and 66 feature observation variables - 1 per column
+  - 'sub_alldata' is then subsetted from 'alldata' using the 'column_select' produced above
+  - 'sub_alldata' column names are cleaned by removing leading numbers and hyphens
+  - 'sub_alldata' is reshaped to 'melt_alldata', a tall and narrow table with the three id columns from above and a single observation        per row using melt()
+  -  'subjectmean' is prepared using dcast(), in which 'testsubject' and 'activityname' are retained as identifiers, and the mean is          calculated for all of the remaining 66 variables
+  -  Column names for 'subjectmean' are revised by prepending 'avg' to the feature names to indicate the values are now averaged
+  -  'tidydata.text' is prepared in the working directory by calling write.table() on 'subjectmean'
+
+The penultimate tidy data set may be reproduced from the resulting text file using the following code:
+
+read.table("./data/tidydata.txt", header = TRUE)
 
 
 
