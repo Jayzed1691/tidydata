@@ -22,8 +22,7 @@ For the sake of completeness, the original codebook for the raw data sets is pre
 
 "Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals)."
 
-"These signals were used to estimate variables of the feature vector for each pattern:
-  -'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions
+"These signals were used to estimate variables of the feature vector for each pattern. '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions:
   - tBodyAcc-XYZ
   - tGravityAcc-XYZ
   - tBodyAccJerk-XYZ
