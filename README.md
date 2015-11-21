@@ -26,7 +26,9 @@ Each sub-directory contains the data files to be transformed through this exerci
 
 The 'Inertial Signals' were not required for the purpose of this exercise, and so will not be discussed further.
 
-The code
+The assignment states that the code can be run assuming the required data files reside in the working directory.  I have made the assumption that the original zip file was downloaded to the working directory and unzipped with the original directory structure intact.
+
+The various 'read' statements make use of this directory structure, but I have also included the requisite code to replicate the downloading and unzipping steps at the top of the block as comments, to be used if necessary.
 
 
 
