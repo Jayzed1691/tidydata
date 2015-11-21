@@ -8,7 +8,7 @@
 #    ## Unzip the data files into the working directory, preserving the sub-directory structure
 #    unzip("./accel.zip", exdir = ".")
 
-## This block of code reads in the required data files from the "accel.zip" file set in the working directory
+## This block of code reads in the required data files from the working directory
 ## IMPORTANT NOTE: This assumes that the zip file's directory structure was maintained, and that the files are nested
 ## within the working directory
 
